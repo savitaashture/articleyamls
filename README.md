@@ -1,4 +1,4 @@
-### YAML formating for Dynamic scheduling of Tekton workloads using Triggers
+### YAML formating for Dynamic scheduling of Tekton workloads using Trigger11s
 
 For EventListener Section
 
