@@ -69,7 +69,7 @@ spec:
       value: $(body.repository.git_http_url)
 ```
 
-For TriggerTemplate Section
+For TriggerTemplate Section:
 
 ```yaml
 apiVersion: triggers.tekton.dev/v1beta1
