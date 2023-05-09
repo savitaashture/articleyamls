@@ -13,6 +13,7 @@ spec:
             script: |
               echo "Hello from taskSpec"
               exit 0
+
     - name: task-from-tektondir
       taskRef:
         name: task-from-tektondir
