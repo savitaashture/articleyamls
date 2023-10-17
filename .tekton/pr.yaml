@@ -57,7 +57,7 @@ spec:
           - name: revision
             value: $(params.revision)
       # Match since a file in this repository match the pattern "(Docker|Container)file$"
-      - name: 
+      - name: buildah
         taskRef:
           name: buildah
         workspaces:
