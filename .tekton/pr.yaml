@@ -60,6 +60,7 @@ spec:
       - name: buildah 
         taskRef:
           name: buildah
+          kind: ClusterTask
         workspaces:
           - name: source
             workspace: source
