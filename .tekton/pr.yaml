@@ -1,0 +1,83 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: article-pr-filechange
+  annotations:
+    pipelinesascode.tekton.dev/on-event: "[pull_request, push]"
+    # pipelinesascode.tekton.dev/on-event: "[incoming]"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    # pipelinesascode.tekton.dev/on-target-branch: "[refs/heads/*]" 
+    # pipelinesascode.tekton.dev/task: "git-clone"
+    # How many runs we want to keep.
+    # pipelinesascode.tekton.dev/max-keep-runs: "2"
+    # pipelinesascode.tekton.dev/on-cel-expression: |
+      # event == "pull_request" && target_branch == "main" && "frontend/***".pathChanged()
+spec:
+  workspaces:
+    - name: output  # this workspace name must be declared in the Pipeline
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce  # access mode may affect how you can use this volume in parallel tasks
+          resources:
+            requests:
+              storage: 1Gi
+  pipelineSpec:
+    workspaces:
+      - name: output
+    tasks:
+      - name: task1
+        workspaces:
+          - name: output
+        taskRef:
+          resolver: git
+          params:
+            - name: url
+              value: https://github.com/tektoncd/catalog.git
+            - name: pathInRepo
+              value: /task/git-clone/0.7/git-clone.yaml
+            - name: revision
+              value: main
+        params:
+          - name: url
+            value: https://github.com/tektoncd/catalog
+          - name: deleteExisting
+            value: "true"
+      - name: noop-task1
+        taskSpec:
+          steps:
+            - name: noop-task
+              image: ubuntu
+              script: |
+                #! /bin/bash
+                echo {{ company }}
+                sleep 20
+                exit 0
+      - name: noop-task2
+        taskSpec:
+          steps:
+            - name: noop-task
+              image: ubuntu
+              script: |
+                #! /bin/bash
+                echo {{ company }}
+                sleep 20
+                exit 0
+      - name: task4
+        workspaces:
+          - name: output
+        taskRef:
+          resolver: git
+          params:
+            - name: url
+              value: https://github.com/tektoncd/catalog.git
+            - name: pathInRepo
+              value: /task/git-clone/0.7/git-clone.yaml
+            - name: revision
+              value: main
+        params:
+          - name: url
+            value: https://github.com/tektoncd/catalog
+          - name: deleteExisting
+            value: "true"   
