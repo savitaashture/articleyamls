@@ -44,3 +44,30 @@ spec:
             value: https://github.com/tektoncd/catalog
           - name: deleteExisting
             value: "true"
+      - name: noop-task
+        taskSpec:
+          steps:
+            - name: noop-task
+              image: ubuntu
+              script: |
+                #! /bin/bash
+                echo {{ company }}
+                sleep 20
+                exit 0
+      - name: task3
+        workspaces:
+          - name: output
+        taskRef:
+          resolver: git
+          params:
+            - name: url
+              value: https://github.com/tektoncd/catalog.git
+            - name: pathInRepo
+              value: /task/git-clone/0.7/git-clone.yaml
+            - name: revision
+              value: main
+        params:
+          - name: url
+            value: https://github.com/tektoncd/catalog
+          - name: deleteExisting
+            value: "true"                
