@@ -101,4 +101,4 @@ spec:
       secretName: "secret"
   - name: basic-auth2
     secret:
-      secretName: "secret is secret"
+      secretName: "secret-is-secret"
