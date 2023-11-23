@@ -81,7 +81,7 @@ spec:
               script: |
                 echo $(workspaces.basic-auth1.path)
                 echo $(workspaces.basic-auth2.path)
-                exit 0
+                exit 1
   workspaces:
   - name: source
     volumeClaimTemplate:
