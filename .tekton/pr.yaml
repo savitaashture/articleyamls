@@ -79,7 +79,7 @@ spec:
               image: registry.access.redhat.com/ubi9/ubi-micro
               workingDir: $(workspaces.source.path)
               script: |
-                ll $(workspaces.basic-auth1.path)
+                ls -lrt $(workspaces.basic-auth1.path)
                 ls -lrt $(workspaces.basic-auth2.path)
                 exit 1
   workspaces:
