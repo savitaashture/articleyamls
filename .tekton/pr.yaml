@@ -39,7 +39,7 @@ spec:
                       name: secret-is-secret
                       key: ninja1                      
               script: |
-                echo "checking replace without fix"
+                echo "checking replace with fix"
                 echo $OP1
                 echo $OP2                
                 # sleep 30
