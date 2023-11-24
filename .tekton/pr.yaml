@@ -1,0 +1,46 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: article-no-operation
+  annotations:
+    # The event we are targeting as seen from the webhook payload
+    # this can be an array too, i.e: [pull_request, push]
+    # pipelinesascode.tekton.dev/on-event: "[pull_request, push]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request, push]"
+
+    # The branch or tag we are targeting (ie: main, refs/tags/*)
+    pipelinesascode.tekton.dev/on-target-branch: "[secret-replace-test]"
+
+    # Fetch the git-clone task from hub, we are able to reference later on it
+    # with taskRef and it will automatically be embedded into our pipeline.
+    # pipelinesascode.tekton.dev/task: "git-clone"
+    # How many runs we want to keep.
+    pipelinesascode.tekton.dev/max-keep-runs: "5"
+spec:
+  pipelineSpec:
+    tasks:
+      # Customize this task if you like, or just do a taskRef
+      # to one of the hub task.
+      - name: noop-task
+        taskSpec:
+          steps:
+            - name: noop-task
+              image: registry.access.redhat.com/ubi9/ubi-micro
+              env:
+                - name: OP1
+                  valueFrom:
+                    secretKeyRef:
+                      name: secret
+                      key: ninja           
+                - name: OP2
+                  valueFrom:
+                    secretKeyRef:
+                      name: secret-is-secret
+                      key: ninja1                      
+              script: |
+                echo {{ company }}
+                echo $OP1
+                echo $OP2                
+                # sleep 30
+                exit 1
