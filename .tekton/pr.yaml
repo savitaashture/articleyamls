@@ -45,12 +45,7 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       name: secret
-                      key: ninja
-                - name: OP2
-                  valueFrom:
-                    secretKeyRef:
-                      name: secret-is-secret
-                      key: ninja1              
+                      key: ninja           
               script: |
                 echo {{ company }}
                 echo $OP1
