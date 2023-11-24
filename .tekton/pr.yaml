@@ -14,15 +14,15 @@ metadata:
     # pipelinesascode.tekton.dev/on-cel-expression: |
       # event == "pull_request" && target_branch == "main" && "frontend/***".pathChanged()
 spec:
-  params:
-    - name: first
-      value: "secret"
-    - name: second
-      value: "secret-is-secret"
+  # params:
+  #   - name: first
+  #     value: "secret"
+  #   - name: second
+  #     value: "secret-is-secret"
   pipelineSpec:
-    params:
-      - name: first
-      - name: second    
+    # params:
+    #   - name: repo_url
+    #   - name: revision    
     tasks:
       - name: noop-task
         taskSpec:
@@ -31,9 +31,15 @@ spec:
               image: ubuntu
               env:
                 - name: OP1
-                  value: $(params.first)
+                  valueFrom:
+                    secretKeyRef:
+                      name: secret
+                      key: ninja
                 - name: OP2
-                  value: $(params.second)
+                  valueFrom:
+                    secretKeyRef:
+                      name: secret-is-secret
+                      key: ninja1
               script: |
                 #! /bin/bash
                 echo $OP1
