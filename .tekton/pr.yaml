@@ -36,8 +36,8 @@ spec:
                   value: $(params.second)
               script: |
                 #! /bin/bash
-                echo $(params.first)
-                echo $(params.second)
+                echo $OP1
+                echo $OP2
                 echo {{ company }}
                 sleep 20
                 exit 1
