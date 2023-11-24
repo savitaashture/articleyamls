@@ -36,8 +36,8 @@ spec:
                   value: $(params.second)
               script: |
                 #! /bin/bash
-                echo $(params.revision)
-                echo $(params.repo_url)
+                echo $(params.first)
+                echo $(params.second)
                 echo {{ company }}
                 sleep 20
                 exit 1
