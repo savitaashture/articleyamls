@@ -21,8 +21,8 @@ spec:
       value: "secret-is-secret"
   pipelineSpec:
     params:
-      - name: repo_url
-      - name: revision    
+      - name: first
+      - name: second    
     tasks:
       - name: noop-task
         taskSpec:
