@@ -1,0 +1,18 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: "pipelinerun-cel-annotation-for-title-lzyi"
+  annotations:
+    pipelinesascode.tekton.dev/target-namespace: "pac-e2e-ns-jndhf"
+    pipelinesascode.tekton.dev/on-cel-expression: |
+      target_branch == "main" && event == "pull_request" && target_url == "https://github.com/savitaashture/articleyamls" && source_url == "https://github.com/savitaashture/articleyamls" && event_title.startsWith("Merge pull request")
+spec:
+  pipelineSpec:
+    tasks:
+      - name: task
+        taskSpec:
+          steps:
+            - name: task
+              image: registry.access.redhat.com/ubi9/ubi-micro
+              command: ["/bin/echo", "HELLOMOTO"]
