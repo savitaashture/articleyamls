@@ -1,0 +1,18 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: "pipelinerun-cel-annotation-for-title-match-ghpg"
+  annotations:
+    pipelinesascode.tekton.dev/target-namespace: "pac-e2e-push-mvhcm"
+    pipelinesascode.tekton.dev/on-cel-expression: |
+      target_branch == "pac-e2e-push-mvhcm" && event == "push" && event_title.startsWith("Testing Github PullRequest")
+spec:
+  pipelineSpec:
+    tasks:
+      - name: task
+        taskSpec:
+          steps:
+            - name: task
+              image: registry.access.redhat.com/ubi9/ubi-micro
+              command: ["/bin/echo", "HELLOMOTO"]
