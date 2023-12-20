@@ -1,0 +1,34 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: another-pr-test
+  annotations:
+    pipelinesascode.tekton.dev/on-event: "[pull_request, push]"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+spec:
+  params:
+    - name: repo_url
+      value: "{{ repo_url }}"
+    - name: revision
+      value: "{{ revision }}"   
+  pipelineSpec:
+    params:
+      - name: repo_url
+      - name: revision
+    tasks:
+      - name: noop-task
+        taskSpec:
+          steps:
+            - name: noop-task
+              image: ubuntu
+              script: |
+                #! /bin/bash
+                echo $(params.revision)
+                echo $(params.repo_url)
+                echo "************"
+                echo "************"
+                echo {{ company }}
+                echo {{ body.pull_request.title }}
+                sleep 20
+                exit 0
