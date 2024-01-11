@@ -4,6 +4,6 @@ RUN ls -lrt /etc/pki
 
 RUN ls -lrt /etc/pki/entitlement
 
-RUn "bash -c dnf search kernel-devel --showduplicates | tail -n2"
+RUN "bash -c dnf search kernel-devel --showduplicates | tail -n2"
 
 CMD ["bash", "-c", "dnf search kernel-devel --showduplicates | tail -n2"]
