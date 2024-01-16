@@ -2,7 +2,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: "pr-gitops-comment"
+  name: "pr-gitops-comment1"
   annotations:
     pipelinesascode.tekton.dev/target-namespace: "pac-e2e-ns-dlx8g"
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
