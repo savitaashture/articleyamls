@@ -4,7 +4,9 @@ RUN ls -lrt /etc/pki/
 
 RUN ls -lrt /etc/pki/entitlement
 
-RUN ls -lrt /run/secrets/etc-pki-entitlement
+RUN cat /etc/containers/mounts.conf
+
+RUN ls -lrt /run/secrets/
 
 RUN dnf list kernel-devel
 
