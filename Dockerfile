@@ -4,10 +4,6 @@ RUN ls -lrt /etc/pki/
 
 RUN ls -lrt /etc/pki/entitlement
 
-RUN ls -lrt /etc/pki/entitlement-host
-
-RUN ls -lrt /run/secrets/etc-pki-entitlement
-
 RUN dnf list kernel-devel
 
 RUN yum update -y
