@@ -10,6 +10,8 @@ RUN dnf search kernel-devel --showduplicates | tail -n2
 
 RUN yum update -y
 
+RUN dnf install tzdata.noarch
+
 # RUN yum install --enablerepo="rhocp-4.14-for-rhel-8-x86_64-rpms" openshift-clients
 
 CMD ["bash", "-c", "dnf search kernel-devel --showduplicates | tail -n2"]
