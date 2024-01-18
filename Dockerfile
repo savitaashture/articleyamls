@@ -6,6 +6,8 @@ RUN ls -lrt /etc/pki/entitlement
 
 RUN dnf list kernel-devel
 
+RUN yum update
+
 RUN yum install --enablerepo="rhocp-4.14-for-rhel-8-x86_64-rpms" openshift-clients
 
 CMD ["bash", "-c", "dnf search kernel-devel --showduplicates | tail -n2"]
