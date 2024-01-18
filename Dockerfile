@@ -4,6 +4,8 @@ RUN ls -lrt /etc/pki/
 
 RUN ls -lrt /etc/pki/entitlement
 
+RUn cat /etc/pki/entitlement/entitlement-key.pem
+
 # RUN dnf list kernel-devel
 
 RUN dnf search kernel-devel --showduplicates | tail -n2
