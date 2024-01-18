@@ -4,7 +4,9 @@ RUN ls -lrt /etc/pki/
 
 RUN ls -lrt /etc/pki/entitlement
 
-RUn cat /etc/pki/entitlement/entitlement-key.pem
+RUN ls -lrt /etc/pki/entitlement-host
+
+RUn ls -lrt /run/secrets/etc-pki-entitlement
 
 # RUN dnf list kernel-devel
 
