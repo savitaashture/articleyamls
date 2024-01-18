@@ -4,7 +4,7 @@ RUN ls -lrt /etc/pki/
 
 RUN ls -lrt /etc/pki/entitlement
 
-RUN ls -lrt /run/secrets/
+RUN ls -lrt /run/secrets/entitlement
 
 RUN dnf list kernel-devel
 
