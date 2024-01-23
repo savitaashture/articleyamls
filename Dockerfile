@@ -4,18 +4,15 @@ RUN ls -lrt /etc/pki/
 
 RUN ls -lrt /etc/pki/entitlement
 
-RUN ls -lrt /etc/pki/entitlement-host
-
-RUn ls -lrt /run/secrets/etc-pki-entitlement
-
-# RUN dnf list kernel-devel
-
 RUN dnf search kernel-devel --showduplicates | tail -n2
 
-RUN yum update -y
+# listing in order to know which repo to be enabled in the next step
+RUN subscription-manager repos --list
 
-RUN dnf install --enablerepo="rhel-9-for-x86_64-baseos-rpms" tzdata.noarch
+RUN subscription-manager repos --enable rhocp-4.13-for-rhel-9-x86_64-rpms
 
-# RUN yum install --enablerepo="rhocp-4.14-for-rhel-8-x86_64-rpms" openshift-clients
+RUN yum -y update
+
+RUN yum install -y openshift-clients.x86_64
 
 CMD ["bash", "-c", "dnf search kernel-devel --showduplicates | tail -n2"]
