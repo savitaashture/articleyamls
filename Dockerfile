@@ -15,4 +15,6 @@ RUN yum -y update
 
 RUN yum install -y openshift-clients.x86_64
 
+RUN oc --help
+
 CMD ["bash", "-c", "dnf search kernel-devel --showduplicates | tail -n2"]
