@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi9:latest
 
-RUN ls -lrt /etc/pki/
+# RUN ls -lrt /etc/pki/
 
 RUN ls -lrt /etc/pki/entitlement
 
