@@ -1,0 +1,11 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: "pipeline_bad_format-cbnc-pac-e2e-ns-djhh8"
+  annotations:
+    pipelinesascode.tekton.dev/target-namespace: "pac-e2e-ns-djhh8"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+spec:
+  pipelineRef:
