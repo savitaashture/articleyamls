@@ -1,0 +1,11 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: "pipeline_bad_format_gh-bvag"
+  annotations:
+    pipelinesascode.tekton.dev/target-namespace: "pac-e2e-ns-sbbh7"
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
+spec:
+  pipelineRef:
